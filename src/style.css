@@ -22,6 +22,23 @@
   --red-500: #ef4444;
   --red-600: #dc2626;
 
+  /* Warm & Steady theme (warm neutrals + teal accent) */
+  --warm-0: #ffffff;
+  --warm-50: #faf9f7;
+  --warm-100: #f5f4f2;
+  --warm-200: #e8e6e3;
+  --warm-300: #d6d4d0;
+  --warm-400: #a8a29e;
+  --warm-500: #78716c;
+  --warm-600: #57534e;
+  --warm-700: #44403c;
+  --warm-800: #3d3a36;
+  --warm-900: #1c1917;
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --teal-700: #0f766e;
+
   /* Spacing scale (4px base) */
   --size-1: 0.25rem;
   --size-2: 0.5rem;
@@ -29,32 +46,35 @@
   --size-4: 1.5rem;
   --size-5: 2rem;
   --size-6: 2.5rem;
+  --size-7: 3rem;
 
   /* Typography */
-  --font-sans: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --text-size-xs: 0.75rem;
   --text-size-sm: 0.875rem;
   --text-size-base: 1rem;
   --text-size-lg: 1.125rem;
   --text-size-xl: 1.25rem;
+  --text-size-2xl: 1.75rem;
 
-  /* Border radius */
-  --radius-1: 0.25rem;
-  --radius-2: 0.5rem;
-  --radius-3: 0.75rem;
+  /* Border radius (rounded, approachable) */
+  --radius-1: 0.5rem;
+  --radius-2: 0.75rem;
+  --radius-3: 1.25rem;
 
   /* ─── Semantic tokens (map to primitives; themes override these mappings) ─── */
 
-  /* Colors */
-  --color-bg: var(--gray-50);
-  --color-surface: var(--gray-0);
-  --color-text: var(--gray-900);
-  --color-text-muted: var(--gray-500);
-  --color-border: var(--gray-200);
-  --color-border-focus: var(--blue-500);
-  --color-accent: var(--blue-600);
-  --color-success: var(--green-600);
+  /* Colors (Warm & Steady: warm neutrals + teal accent) */
+  --color-bg: var(--warm-50);
+  --color-surface: var(--warm-0);
+  --color-text: var(--warm-800);
+  --color-text-muted: var(--warm-500);
+  --color-border: var(--warm-200);
+  --color-border-focus: var(--teal-500);
+  --color-accent: var(--teal-600);
+  --color-success: var(--teal-600);
   --color-error: var(--red-600);
+  --color-surface-completed: var(--warm-100);
 
   /* Spacing */
   --space-xs: var(--size-1);
@@ -63,6 +83,7 @@
   --space-lg: var(--size-4);
   --space-xl: var(--size-5);
   --space-2xl: var(--size-6);
+  --space-3xl: var(--size-7);
 
   /* Typography */
   --font-body: var(--font-sans);
@@ -71,6 +92,7 @@
   --text-base: var(--text-size-base);
   --text-lg: var(--text-size-lg);
   --text-xl: var(--text-size-xl);
+  --text-2xl: var(--text-size-2xl);
 
   /* Border radius */
   --radius-sm: var(--radius-1);
@@ -115,7 +137,7 @@ h1 {
 
 #app {
   width: 100%;
-  max-width: 28rem;
+  max-width: 32rem;
   margin: 0 auto;
   padding: var(--space-xl);
   text-align: center;
@@ -155,19 +177,29 @@ h1 {
 }
 
 .todo-header {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-2xl);
 }
 
 .todo-title {
   margin: 0;
-  font-size: var(--text-xl);
+  font-size: var(--text-2xl);
   font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.todo-journey {
+  margin: var(--space-sm) 0 0;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-accent);
+  line-height: 1.35;
 }
 
 .todo-form {
   display: flex;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-2xl);
 }
 
 .todo-input {
@@ -179,7 +211,7 @@ h1 {
   color: var(--color-text);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
 }
 
 .todo-input::placeholder {
@@ -193,8 +225,15 @@ h1 {
 
 .todo-add-button {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--radius-md);
+}
+
+.todo-add-button .icon {
+  color: inherit;
 }
 
 .todo-list {
@@ -204,7 +243,7 @@ h1 {
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .todo-item {
@@ -215,7 +254,8 @@ h1 {
   font-size: var(--text-base);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .todo-item-checkbox {
@@ -233,15 +273,35 @@ h1 {
   text-overflow: ellipsis;
 }
 
+.todo-item--completed {
+  background-color: var(--color-surface-completed);
+  border-left: 3px solid var(--color-accent);
+  padding-left: calc(var(--space-md) - 3px);
+}
+
 .todo-item--completed .todo-item-text {
   text-decoration: line-through;
   color: var(--color-text-muted);
 }
 
+.todo-item--completed .todo-item-checkbox {
+  accent-color: var(--color-success);
+}
+
 .todo-item-delete {
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xs);
+  min-width: 2.25rem;
+  min-height: 2.25rem;
   color: var(--color-error);
   border-color: var(--color-error);
+}
+
+.todo-item-delete .icon {
+  color: currentColor;
 }
 
 .todo-item-delete:hover {
@@ -266,7 +326,12 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.todo-input:focus {
+  box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-border-focus);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -276,9 +341,10 @@ button:focus-visible {
     --color-text: var(--gray-50);
     --color-text-muted: var(--gray-400);
     --color-border: var(--gray-700);
-    --color-border-focus: var(--blue-400);
-    --color-accent: var(--blue-400);
-    --color-success: var(--green-500);
+    --color-border-focus: var(--teal-400);
+    --color-accent: var(--teal-400);
+    --color-success: var(--teal-400);
     --color-error: var(--red-500);
+    --color-surface-completed: var(--gray-700);
   }
 }
