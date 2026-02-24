@@ -114,7 +114,8 @@ h1 {
 }
 
 #app {
-  max-width: 1280px;
+  width: 100%;
+  max-width: 28rem;
   margin: 0 auto;
   padding: var(--space-xl);
   text-align: center;
@@ -139,6 +140,113 @@ h1 {
 
 .read-the-docs {
   color: var(--color-text-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.todo-header {
+  margin-bottom: var(--space-lg);
+}
+
+.todo-title {
+  margin: 0;
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.todo-form {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.todo-input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-base);
+  font-family: inherit;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.todo-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+}
+
+.todo-add-button {
+  flex-shrink: 0;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-base);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.todo-item-checkbox {
+  width: var(--space-md);
+  height: var(--space-md);
+  flex-shrink: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.todo-item-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.todo-item--completed .todo-item-text {
+  text-decoration: line-through;
+  color: var(--color-text-muted);
+}
+
+.todo-item-delete {
+  flex-shrink: 0;
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.todo-item-delete:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
 }
 
 button {
