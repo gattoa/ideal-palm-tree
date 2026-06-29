@@ -1,0 +1,26 @@
+{
+  "engagement" : {
+    "displayName" : "ideal-palm-tree",
+    "id" : "gattoa/ideal-palm-tree",
+    "localPath" : ""
+  },
+  "modelOverrides" : {
+    "onboarder" : "nemotron-3-ultra"
+  },
+  "provider" : {
+    "kind" : "ollama-cloud",
+    "model" : "deepseek-v4-pro"
+  },
+  "schemaVersion" : "agencyx.config.v1",
+  "verification" : {
+    "buildCommand" : "npm run build",
+    "runCommand" : "npm run dev",
+    "testCommand" : "echo \"No tests defined\"",
+    "timeoutMs" : 300000
+  },
+  "vision" : {
+    "briefPaths" : [
+
+    ]
+  }
+}
